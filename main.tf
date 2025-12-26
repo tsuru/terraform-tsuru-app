@@ -30,7 +30,7 @@ resource "tsuru_app" "app" {
 
 resource "tsuru_app_deploy" "app_deploy" {
   count = var.deploy == false ? 0 : 1
-  app   = var.name
+  app   = tsuru_app.app.name
   image = var.image
 }
 
@@ -66,7 +66,7 @@ resource "tsuru_service_instance_bind" "app_bind" {
   for_each          = { for inst in var.binds : "${inst.service_name}-${inst.service_instance}" => inst }
   service_name      = each.value.service_name
   service_instance  = each.value.service_instance
-  app               = var.name
+  app               = tsuru_app.app.name
   restart_on_update = true
 }
 
