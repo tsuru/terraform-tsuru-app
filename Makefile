@@ -12,4 +12,4 @@ fmt: ## Format Terraform files
 
 docs: ## Generate documentation using terraform-docs
 	@echo "Generating documentation..."
-	@terraform-docs markdown table --output-file README.md --output-mode inject .
+	@terraform-docs .
