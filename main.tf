@@ -63,8 +63,8 @@ resource "tsuru_app_router" "app_router" {
 }
 
 resource "tsuru_service_instance_bind" "app_bind" {
-  for_each          = { for inst in var.binds : inst.service_name => inst }
-  service_name      = each.key
+  for_each          = { for inst in var.binds : "${inst.service_name}-${inst.service_instance}" => inst }
+  service_name      = each.value.service_name
   service_instance  = each.value.service_instance
   app               = var.name
   restart_on_update = true
