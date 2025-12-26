@@ -1,16 +1,20 @@
 output "app_name" {
-  value = tsuru_app.app.name
+  description = "Application name"
+  value       = tsuru_app.app.name
 }
 
 output "app_description" {
-  value = tsuru_app.app.description
+  description = "Application description"
+  value       = tsuru_app.app.description
 }
 
 output "app_environment_variables" {
-  value = tsuru_app_env.app_env.environment_variables
+  description = "Application environment variables (non-sensitive)"
+  value       = tsuru_app_env.app_env.environment_variables
 }
 
 output "app_processes" {
+  description = "Application processes with autoscaling configuration"
   value = [for inst in tsuru_app_autoscale.app_scale : {
     name       = inst.process
     min_units  = inst.min_units
@@ -20,7 +24,8 @@ output "app_processes" {
 }
 
 output "app_routers" {
-  value = [for router in tsuru_app_router.app_router : router.name]
+  description = "List of additional routers configured for the application"
+  value       = [for router in tsuru_app_router.app_router : router.name]
 }
 
 output "app_cluster" {

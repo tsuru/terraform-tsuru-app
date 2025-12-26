@@ -156,7 +156,7 @@ No modules.
 | <a name="input_certificates"></a> [certificates](#input\_certificates) | Certificate issuers for CNAMEs | <pre>list(<br/>    object({<br/>      cname  = string<br/>      issuer = string<br/>    })<br/>  )</pre> | `[]` | no |
 | <a name="input_cname_hostnames"></a> [cname\_hostnames](#input\_cname\_hostnames) | Tsuru app cname hostnames | `set(string)` | `[]` | no |
 | <a name="input_custom_cpu_burst"></a> [custom\_cpu\_burst](#input\_custom\_cpu\_burst) | CPU burst factory override | `number` | `null` | no |
-| <a name="input_deploy"></a> [deploy](#input\_deploy) | Delpoy the app after creation | `bool` | `false` | no |
+| <a name="input_deploy"></a> [deploy](#input\_deploy) | Deploy the app after creation | `bool` | `false` | no |
 | <a name="input_description"></a> [description](#input\_description) | Tsuru app description | `string` | n/a | yes |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | non-sensitive app ENV variables | `map(string)` | n/a | yes |
 | <a name="input_git_directory"></a> [git\_directory](#input\_git\_directory) | Path to the git repository | `string` | `"../../"` | no |
@@ -180,13 +180,13 @@ No modules.
 |------|-------------|
 | <a name="output_app_cluster"></a> [app\_cluster](#output\_app\_cluster) | The name of the cluster where the app is deployed |
 | <a name="output_app_cnames"></a> [app\_cnames](#output\_app\_cnames) | List of CNAMEs configured for the application |
-| <a name="output_app_description"></a> [app\_description](#output\_app\_description) | n/a |
-| <a name="output_app_environment_variables"></a> [app\_environment\_variables](#output\_app\_environment\_variables) | n/a |
-| <a name="output_app_name"></a> [app\_name](#output\_app\_name) | n/a |
+| <a name="output_app_description"></a> [app\_description](#output\_app\_description) | Application description |
+| <a name="output_app_environment_variables"></a> [app\_environment\_variables](#output\_app\_environment\_variables) | Application environment variables (non-sensitive) |
+| <a name="output_app_name"></a> [app\_name](#output\_app\_name) | Application name |
 | <a name="output_app_platform"></a> [app\_platform](#output\_app\_platform) | Application platform |
 | <a name="output_app_pool"></a> [app\_pool](#output\_app\_pool) | Application pool |
-| <a name="output_app_processes"></a> [app\_processes](#output\_app\_processes) | n/a |
-| <a name="output_app_routers"></a> [app\_routers](#output\_app\_routers) | n/a |
+| <a name="output_app_processes"></a> [app\_processes](#output\_app\_processes) | Application processes with autoscaling configuration |
+| <a name="output_app_routers"></a> [app\_routers](#output\_app\_routers) | List of additional routers configured for the application |
 | <a name="output_app_tags"></a> [app\_tags](#output\_app\_tags) | Application tags |
 | <a name="output_app_team_owner"></a> [app\_team\_owner](#output\_app\_team\_owner) | Application team owner |
 <!-- END_TF_DOCS -->
