@@ -135,3 +135,9 @@ variable "certificates" {
   )
   default = []
 }
+
+variable "team_grants" {
+  description = "List of teams to grant access to the application"
+  type        = set(string)
+  default     = []
+}

@@ -142,6 +142,7 @@ No modules.
 | [tsuru_app_cname.app-extra-cname](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_cname) | resource |
 | [tsuru_app_deploy.app_deploy](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_deploy) | resource |
 | [tsuru_app_env.app_env](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_env) | resource |
+| [tsuru_app_grant.team](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_grant) | resource |
 | [tsuru_app_router.app_router](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_router) | resource |
 | [tsuru_certificate_issuer.cert](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/certificate_issuer) | resource |
 | [tsuru_service_instance_bind.app_bind](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/service_instance_bind) | resource |
@@ -170,6 +171,7 @@ No modules.
 | <a name="input_restart_on_update"></a> [restart\_on\_update](#input\_restart\_on\_update) | Whether to restart the app when its configuration or processes are updated | `bool` | `true` | no |
 | <a name="input_routers"></a> [routers](#input\_routers) | Tsuru app routers (see: tsuru router list) | `set(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tsuru tags | `set(string)` | n/a | yes |
+| <a name="input_team_grants"></a> [team\_grants](#input\_team\_grants) | List of teams to grant access to the application | `set(string)` | `[]` | no |
 | <a name="input_team_owner"></a> [team\_owner](#input\_team\_owner) | Tsuru app team owner | `string` | n/a | yes |
 
 ## Outputs

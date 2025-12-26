@@ -76,3 +76,9 @@ resource "tsuru_certificate_issuer" "cert" {
   cname    = each.value.cname
   issuer   = each.value.issuer
 }
+
+resource "tsuru_app_grant" "team" {
+  for_each = var.team_grants
+  app      = tsuru_app.app.name
+  team     = each.value
+}
