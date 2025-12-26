@@ -34,20 +34,20 @@ module "my_app" {
 
   processes = [
     {
-      name        = "web"
-      custom_plan = "c2.0m4.0"
-      target_cpu  = 75
-      min_units   = 3
-      max_units   = 20
+      name                 = "web"
+      custom_plan          = "c2.0m4.0"
+      autoscale_target_cpu = 75
+      autoscale_min_units  = 3
+      autoscale_max_units  = 20
       labels = {
         "process" = "api"
       }
     },
     {
-      name       = "worker"
-      target_cpu = 80
-      min_units  = 2
-      max_units  = 10
+      name                 = "worker"
+      autoscale_target_cpu = 80
+      autoscale_min_units  = 2
+      autoscale_max_units  = 10
     }
   ]
 

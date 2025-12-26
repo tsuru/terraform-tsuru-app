@@ -31,16 +31,16 @@ variable "deploy" {
 }
 
 variable "processes" {
-  description = "Tsuru process configuration, requerid fields: name, target_cpu, min_units, max_units, optional fields: custom_plan, annotations, labels"
+  description = "Tsuru process configuration, requerid fields: name, autoscale_target_cpu, autoscale_min_units, autoscale_max_units, optional fields: custom_plan, annotations, labels"
   type = list(
     object({
-      name        = string
-      custom_plan = optional(string, null)
-      target_cpu  = number
-      min_units   = number
-      max_units   = number
-      annotations = optional(map(string), {})
-      labels      = optional(map(string), {})
+      name                  = string
+      custom_plan           = optional(string, null)
+      autoscale_target_cpu  = number
+      autoscale_min_units   = number
+      autoscale_max_units   = number
+      annotations           = optional(map(string), {})
+      labels                = optional(map(string), {})
     })
   )
 }

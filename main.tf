@@ -50,9 +50,9 @@ resource "tsuru_app_autoscale" "app_scale" {
   for_each    = { for inst in var.processes : inst.name => inst }
   app         = tsuru_app.app.name
   process     = each.key
-  min_units   = each.value.min_units
-  max_units   = each.value.max_units
-  cpu_average = each.value.target_cpu
+  min_units   = each.value.autoscale_min_units
+  max_units   = each.value.autoscale_max_units
+  cpu_average = each.value.autoscale_target_cpu
 }
 
 
