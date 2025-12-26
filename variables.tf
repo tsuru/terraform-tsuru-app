@@ -21,7 +21,7 @@ variable "description" {
 variable "image" {
   description = "Image to be used by the app"
   type        = string
-  default     = "FIXME"
+  default     = ""
 }
 
 variable "deploy" {
