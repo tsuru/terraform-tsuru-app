@@ -105,6 +105,14 @@ make docs         # Generate documentation
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+## Maintainers
+
+This module is maintained by:
+
+- **[@fbtravi](https://github.com/fbtravi)** - Felipe Travi
+
+Feel free to reach out to the maintainers for questions, suggestions, or if you're interested in becoming a maintainer yourself.
+
 ---
 
 <!-- BEGIN_TF_DOCS -->
