@@ -159,8 +159,6 @@ No modules.
 | <a name="input_deploy"></a> [deploy](#input\_deploy) | Deploy the app after creation | `bool` | `false` | no |
 | <a name="input_description"></a> [description](#input\_description) | Tsuru app description | `string` | n/a | yes |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | non-sensitive app ENV variables | `map(string)` | n/a | yes |
-| <a name="input_git_directory"></a> [git\_directory](#input\_git\_directory) | Path to the git repository | `string` | `"../../"` | no |
-| <a name="input_git_remote_name"></a> [git\_remote\_name](#input\_git\_remote\_name) | Name of the git remote | `string` | `"origin"` | no |
 | <a name="input_image"></a> [image](#input\_image) | Image to be used by the app | `string` | `"FIXME"` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | Labels metadata | `map(string)` | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | Tsuru app name | `string` | n/a | yes |

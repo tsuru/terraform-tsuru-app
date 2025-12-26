@@ -90,18 +90,6 @@ variable "private_environment_variables" {
   sensitive   = true
 }
 
-variable "git_directory" {
-  description = "Path to the git repository"
-  type        = string
-  default     = "../../"
-}
-
-variable "git_remote_name" {
-  description = "Name of the git remote"
-  type        = string
-  default     = "origin"
-}
-
 variable "binds" {
   description = "App binds"
   type = list(
