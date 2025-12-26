@@ -168,10 +168,10 @@ No modules.
 | <a name="input_platform"></a> [platform](#input\_platform) | Tsuru app platform | `string` | n/a | yes |
 | <a name="input_pool"></a> [pool](#input\_pool) | Tsuru pool (see: tsuru pool list) | `string` | n/a | yes |
 | <a name="input_private_environment_variables"></a> [private\_environment\_variables](#input\_private\_environment\_variables) | Sensitive app ENV variables | `map(string)` | n/a | yes |
-| <a name="input_processes"></a> [processes](#input\_processes) | Tsuru process configuration, requerid fields: name, target\_cpu, min\_units, max\_units, optional fields: custom\_plan, annotations, labels | <pre>list(<br/>    object({<br/>      name        = string<br/>      custom_plan = optional(string, null)<br/>      target_cpu  = number<br/>      min_units   = number<br/>      max_units   = number<br/>      annotations = optional(map(string), {})<br/>      labels      = optional(map(string), {})<br/>    })<br/>  )</pre> | n/a | yes |
-| <a name="input_restart_on_update"></a> [restart\_on\_update](#input\_restart\_on\_update) | Tsuru tag | `bool` | `true` | no |
+| <a name="input_processes"></a> [processes](#input\_processes) | Tsuru process configuration, required fields: name, autoscale\_target\_cpu, autoscale\_min\_units, autoscale\_max\_units, optional fields: custom\_plan, annotations, labels | <pre>list(<br/>    object({<br/>      name                 = string<br/>      custom_plan          = optional(string, null)<br/>      autoscale_target_cpu = number<br/>      autoscale_min_units  = number<br/>      autoscale_max_units  = number<br/>      annotations          = optional(map(string), {})<br/>      labels               = optional(map(string), {})<br/>    })<br/>  )</pre> | n/a | yes |
+| <a name="input_restart_on_update"></a> [restart\_on\_update](#input\_restart\_on\_update) | Whether to restart the app when its configuration or processes are updated | `bool` | `true` | no |
 | <a name="input_router"></a> [router](#input\_router) | Tsuru app router (see: tsuru router list) | `string` | `"none"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tsuru tag | `set(string)` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tsuru tags | `set(string)` | n/a | yes |
 | <a name="input_team_owner"></a> [team\_owner](#input\_team\_owner) | Tsuru app team owner | `string` | n/a | yes |
 
 ## Outputs

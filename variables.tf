@@ -25,22 +25,22 @@ variable "image" {
 }
 
 variable "deploy" {
-  description = "Delpoy the app after creation"
+  description = "Deploy the app after creation"
   type        = bool
   default     = false
 }
 
 variable "processes" {
-  description = "Tsuru process configuration, requerid fields: name, autoscale_target_cpu, autoscale_min_units, autoscale_max_units, optional fields: custom_plan, annotations, labels"
+  description = "Tsuru process configuration, required fields: name, autoscale_target_cpu, autoscale_min_units, autoscale_max_units, optional fields: custom_plan, annotations, labels"
   type = list(
     object({
-      name                  = string
-      custom_plan           = optional(string, null)
-      autoscale_target_cpu  = number
-      autoscale_min_units   = number
-      autoscale_max_units   = number
-      annotations           = optional(map(string), {})
-      labels                = optional(map(string), {})
+      name                 = string
+      custom_plan          = optional(string, null)
+      autoscale_target_cpu = number
+      autoscale_min_units  = number
+      autoscale_max_units  = number
+      annotations          = optional(map(string), {})
+      labels               = optional(map(string), {})
     })
   )
 }
@@ -69,12 +69,12 @@ variable "pool" {
 }
 
 variable "tags" {
-  description = "Tsuru tag"
+  description = "Tsuru tags"
   type        = set(string)
 }
 
 variable "restart_on_update" {
-  description = "Tsuru tag"
+  description = "Whether to restart the app when its configuration or processes are updated"
   type        = bool
   default     = true
 }
