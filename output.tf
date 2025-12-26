@@ -35,7 +35,7 @@ output "app_cluster" {
 
 output "app_cnames" {
   description = "List of CNAMEs configured for the application"
-  value       = [for cname in tsuru_app_cname.app-extra-cname : cname.hostname]
+  value       = [for cname in tsuru_app_cname.app_cname : cname.hostname]
 }
 
 output "app_platform" {

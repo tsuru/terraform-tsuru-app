@@ -40,10 +40,10 @@ resource "tsuru_app_env" "app_env" {
   private_environment_variables = var.private_environment_variables
 }
 
-resource "tsuru_app_cname" "app-extra-cname" {
-  for_each = var.cname_hostnames
+resource "tsuru_app_cname" "app_cname" {
+  for_each = { for cname in var.cnames : cname.hostname => cname }
   app      = tsuru_app.app.name
-  hostname = each.value
+  hostname = each.value.hostname
 }
 
 resource "tsuru_app_autoscale" "app_scale" {
@@ -71,9 +71,9 @@ resource "tsuru_service_instance_bind" "app_bind" {
 }
 
 resource "tsuru_certificate_issuer" "cert" {
-  for_each = { for cert in var.certificates : cert.cname => cert }
+  for_each = { for cname in var.cnames : cname.hostname => cname if cname.issuer != null }
   app      = tsuru_app.app.name
-  cname    = each.value.cname
+  cname    = each.value.hostname
   issuer   = each.value.issuer
 }
 

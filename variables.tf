@@ -101,12 +101,6 @@ variable "binds" {
   default = []
 }
 
-variable "cname_hostnames" {
-  description = "Tsuru app cname hostnames"
-  type        = set(string)
-  default     = []
-}
-
 variable "labels" {
   description = "Labels metadata"
   type        = map(string)
@@ -125,12 +119,12 @@ variable "custom_cpu_burst" {
   default     = null
 }
 
-variable "certificates" {
-  description = "Certificate issuers for CNAMEs"
+variable "cnames" {
+  description = "CNAMEs for the application. If issuer is provided, a certificate will be created"
   type = list(
     object({
-      cname  = string
-      issuer = string
+      hostname = string
+      issuer   = optional(string, null)
     })
   )
   default = []

@@ -55,21 +55,20 @@ module "my_app" {
     LOG_LEVEL = "info"
     APP_ENV   = "production"
   }
-  # Multiple CNAMEs
-  cname_hostnames = [
-    "myapp.example.com",
-    "api.example.com"
-  ]
 
-  # SSL Certificates
-  certificates = [
+  # CNAMEs with optional SSL certificates
+  cnames = [
     {
-      cname  = "myapp.example.com"
-      issuer = "letsencrypt"
+      hostname = "myapp.example.com"
+      issuer   = "letsencrypt"  # Creates CNAME + SSL certificate
     },
     {
-      cname  = "api.example.com"
-      issuer = "letsencrypt"
+      hostname = "api.example.com"
+      issuer   = "letsencrypt"  # Creates CNAME + SSL certificate
+    },
+    {
+      hostname = "staging.example.com"
+      # No issuer - only creates CNAME
     }
   ]
 
