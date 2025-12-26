@@ -51,14 +51,14 @@ variable "plan" {
   default     = "c0.1m0.1"
 }
 
-variable "additional_routers" {
-  description = "Tsuru app router (see: tsuru router list)"
+variable "routers" {
+  description = "Tsuru app routers (see: tsuru router list)"
   type        = set(string)
   default     = []
 }
 
-variable "router" {
-  description = "Tsuru app router (see: tsuru router list)"
+variable "default_router" {
+  description = "Tsuru app default router (see: tsuru router list)"
   type        = string
   default     = "none"
 }

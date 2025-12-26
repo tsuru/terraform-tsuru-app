@@ -6,7 +6,7 @@ resource "tsuru_app" "app" {
   description       = var.description
   pool              = var.pool
   tags              = var.tags
-  default_router    = var.router
+  default_router    = var.default_router
   restart_on_update = var.restart_on_update
   custom_cpu_burst  = var.custom_cpu_burst
 
@@ -57,7 +57,7 @@ resource "tsuru_app_autoscale" "app_scale" {
 
 
 resource "tsuru_app_router" "app_router" {
-  for_each = var.additional_routers
+  for_each = var.routers
   app      = tsuru_app.app.name
   name     = each.value
 }

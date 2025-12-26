@@ -150,12 +150,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_additional_routers"></a> [additional\_routers](#input\_additional\_routers) | Tsuru app router (see: tsuru router list) | `set(string)` | `[]` | no |
 | <a name="input_annotations"></a> [annotations](#input\_annotations) | Annotations metadata | `map(string)` | `{}` | no |
 | <a name="input_binds"></a> [binds](#input\_binds) | App binds | <pre>list(<br/>    object({<br/>      service_name     = string<br/>      service_instance = string<br/>    })<br/>  )</pre> | `[]` | no |
 | <a name="input_certificates"></a> [certificates](#input\_certificates) | Certificate issuers for CNAMEs | <pre>list(<br/>    object({<br/>      cname  = string<br/>      issuer = string<br/>    })<br/>  )</pre> | `[]` | no |
 | <a name="input_cname_hostnames"></a> [cname\_hostnames](#input\_cname\_hostnames) | Tsuru app cname hostnames | `set(string)` | `[]` | no |
 | <a name="input_custom_cpu_burst"></a> [custom\_cpu\_burst](#input\_custom\_cpu\_burst) | CPU burst factory override | `number` | `null` | no |
+| <a name="input_default_router"></a> [default\_router](#input\_default\_router) | Tsuru app default router (see: tsuru router list) | `string` | `"none"` | no |
 | <a name="input_deploy"></a> [deploy](#input\_deploy) | Deploy the app after creation | `bool` | `false` | no |
 | <a name="input_description"></a> [description](#input\_description) | Tsuru app description | `string` | n/a | yes |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | non-sensitive app ENV variables | `map(string)` | n/a | yes |
@@ -168,7 +168,7 @@ No modules.
 | <a name="input_private_environment_variables"></a> [private\_environment\_variables](#input\_private\_environment\_variables) | Sensitive app ENV variables | `map(string)` | n/a | yes |
 | <a name="input_processes"></a> [processes](#input\_processes) | Tsuru process configuration, required fields: name, autoscale\_target\_cpu, autoscale\_min\_units, autoscale\_max\_units, optional fields: custom\_plan, annotations, labels | <pre>list(<br/>    object({<br/>      name                 = string<br/>      custom_plan          = optional(string, null)<br/>      autoscale_target_cpu = number<br/>      autoscale_min_units  = number<br/>      autoscale_max_units  = number<br/>      annotations          = optional(map(string), {})<br/>      labels               = optional(map(string), {})<br/>    })<br/>  )</pre> | n/a | yes |
 | <a name="input_restart_on_update"></a> [restart\_on\_update](#input\_restart\_on\_update) | Whether to restart the app when its configuration or processes are updated | `bool` | `true` | no |
-| <a name="input_router"></a> [router](#input\_router) | Tsuru app router (see: tsuru router list) | `string` | `"none"` | no |
+| <a name="input_routers"></a> [routers](#input\_routers) | Tsuru app routers (see: tsuru router list) | `set(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tsuru tags | `set(string)` | n/a | yes |
 | <a name="input_team_owner"></a> [team\_owner](#input\_team\_owner) | Tsuru app team owner | `string` | n/a | yes |
 
