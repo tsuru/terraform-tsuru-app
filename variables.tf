@@ -1,0 +1,149 @@
+variable "name" {
+  description = "Tsuru app name"
+  type        = string
+}
+
+variable "platform" {
+  description = "Tsuru app platform"
+  type        = string
+}
+
+variable "team_owner" {
+  description = "Tsuru app team owner"
+  type        = string
+}
+
+variable "description" {
+  description = "Tsuru app description"
+  type        = string
+}
+
+variable "image" {
+  description = "Image to be used by the app"
+  type        = string
+  default     = "FIXME"
+}
+
+variable "deploy" {
+  description = "Delpoy the app after creation"
+  type        = bool
+  default     = false
+}
+
+variable "processes" {
+  description = "Tsuru process configuration, requerid fields: name, target_cpu, min_units, max_units, optional fields: custom_plan, annotations, labels"
+  type = list(
+    object({
+      name        = string
+      custom_plan = optional(string, null)
+      target_cpu  = number
+      min_units   = number
+      max_units   = number
+      annotations = optional(map(string), {})
+      labels      = optional(map(string), {})
+    })
+  )
+}
+
+variable "plan" {
+  description = "Tsuru app plan (see: tsuru plan list)"
+  type        = string
+  default     = "c0.1m0.1"
+}
+
+variable "additional_routers" {
+  description = "Tsuru app router (see: tsuru router list)"
+  type        = set(string)
+  default     = []
+}
+
+variable "router" {
+  description = "Tsuru app router (see: tsuru router list)"
+  type        = string
+  default     = "none"
+}
+
+variable "pool" {
+  description = "Tsuru pool (see: tsuru pool list)"
+  type        = string
+}
+
+variable "tags" {
+  description = "Tsuru tag"
+  type        = set(string)
+}
+
+variable "restart_on_update" {
+  description = "Tsuru tag"
+  type        = bool
+  default     = true
+}
+
+variable "environment_variables" {
+  description = "non-sensitive app ENV variables"
+  type        = map(string)
+}
+
+variable "private_environment_variables" {
+  description = "Sensitive app ENV variables"
+  type        = map(string)
+  sensitive   = true
+}
+
+variable "git_directory" {
+  description = "Path to the git repository"
+  type        = string
+  default     = "../../"
+}
+
+variable "git_remote_name" {
+  description = "Name of the git remote"
+  type        = string
+  default     = "origin"
+}
+
+variable "binds" {
+  description = "App binds"
+  type = list(
+    object({
+      service_name     = string
+      service_instance = string
+    })
+  )
+  default = []
+}
+
+variable "cname_hostnames" {
+  description = "Tsuru app cname hostnames"
+  type        = set(string)
+  default     = []
+}
+
+variable "labels" {
+  description = "Labels metadata"
+  type        = map(string)
+  default     = {}
+}
+
+variable "annotations" {
+  description = "Annotations metadata"
+  type        = map(string)
+  default     = {}
+}
+
+variable "custom_cpu_burst" {
+  description = "CPU burst factory override"
+  type        = number
+  default     = null
+}
+
+variable "certificates" {
+  description = "Certificate issuers for CNAMEs"
+  type = list(
+    object({
+      cname  = string
+      issuer = string
+    })
+  )
+  default = []
+}
