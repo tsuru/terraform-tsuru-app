@@ -53,6 +53,38 @@ resource "tsuru_app_autoscale" "app_scale" {
   min_units   = each.value.autoscale_min_units
   max_units   = each.value.autoscale_max_units
   cpu_average = each.value.autoscale_target_cpu
+
+  dynamic "scale_down" {
+    for_each = each.value.scale_down != null ? [each.value.scale_down] : []
+
+    content {
+      percentage           = scale_down.value.percentage
+      stabilization_window = scale_down.value.stabilization_window
+      units                = scale_down.value.units
+    }
+  }
+
+  dynamic "schedule" {
+    for_each = each.value.schedule
+
+    content {
+      min_replicas = schedule.value.min_replicas
+      start        = schedule.value.start
+      end          = schedule.value.end
+      timezone     = schedule.value.timezone
+    }
+  }
+
+  dynamic "prometheus" {
+    for_each = each.value.prometheus
+
+    content {
+      name           = prometheus.value.name
+      query          = prometheus.value.query
+      threshold      = prometheus.value.threshold
+      custom_address = prometheus.value.custom_address
+    }
+  }
 }
 
 

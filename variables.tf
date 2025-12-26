@@ -31,7 +31,7 @@ variable "deploy" {
 }
 
 variable "processes" {
-  description = "Tsuru process configuration, required fields: name, autoscale_target_cpu, autoscale_min_units, autoscale_max_units, optional fields: custom_plan, annotations, labels"
+  description = "Tsuru process configuration, required fields: name, autoscale_target_cpu, autoscale_min_units, autoscale_max_units, optional fields: custom_plan, annotations, labels, scale_down, schedule, prometheus"
   type = list(
     object({
       name                 = string
@@ -41,6 +41,23 @@ variable "processes" {
       autoscale_max_units  = number
       annotations          = optional(map(string), {})
       labels               = optional(map(string), {})
+      scale_down = optional(object({
+        percentage           = optional(number, null)
+        stabilization_window = optional(number, null)
+        units                = optional(number, null)
+      }), null)
+      schedule = optional(list(object({
+        min_replicas = number
+        start        = string
+        end          = string
+        timezone     = optional(string, "UTC")
+      })), [])
+      prometheus = optional(list(object({
+        name           = string
+        query          = string
+        threshold      = number
+        custom_address = optional(string, null)
+      })), [])
     })
   )
 }

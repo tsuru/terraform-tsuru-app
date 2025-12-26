@@ -138,7 +138,7 @@ No modules.
 |------|------|
 | [tsuru_app.app](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app) | resource |
 | [tsuru_app_autoscale.app_scale](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_autoscale) | resource |
-| [tsuru_app_cname.app-extra-cname](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_cname) | resource |
+| [tsuru_app_cname.app_cname](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_cname) | resource |
 | [tsuru_app_deploy.app_deploy](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_deploy) | resource |
 | [tsuru_app_env.app_env](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_env) | resource |
 | [tsuru_app_grant.team](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_grant) | resource |
@@ -152,21 +152,20 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_annotations"></a> [annotations](#input\_annotations) | Annotations metadata | `map(string)` | `{}` | no |
 | <a name="input_binds"></a> [binds](#input\_binds) | App binds | <pre>list(<br/>    object({<br/>      service_name     = string<br/>      service_instance = string<br/>    })<br/>  )</pre> | `[]` | no |
-| <a name="input_certificates"></a> [certificates](#input\_certificates) | Certificate issuers for CNAMEs | <pre>list(<br/>    object({<br/>      cname  = string<br/>      issuer = string<br/>    })<br/>  )</pre> | `[]` | no |
-| <a name="input_cname_hostnames"></a> [cname\_hostnames](#input\_cname\_hostnames) | Tsuru app cname hostnames | `set(string)` | `[]` | no |
+| <a name="input_cnames"></a> [cnames](#input\_cnames) | CNAMEs for the application. If issuer is provided, a certificate will be created | <pre>list(<br/>    object({<br/>      hostname = string<br/>      issuer   = optional(string, null)<br/>    })<br/>  )</pre> | `[]` | no |
 | <a name="input_custom_cpu_burst"></a> [custom\_cpu\_burst](#input\_custom\_cpu\_burst) | CPU burst factory override | `number` | `null` | no |
 | <a name="input_default_router"></a> [default\_router](#input\_default\_router) | Tsuru app default router (see: tsuru router list) | `string` | `"none"` | no |
 | <a name="input_deploy"></a> [deploy](#input\_deploy) | Deploy the app after creation | `bool` | `false` | no |
 | <a name="input_description"></a> [description](#input\_description) | Tsuru app description | `string` | n/a | yes |
 | <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | non-sensitive app ENV variables | `map(string)` | n/a | yes |
-| <a name="input_image"></a> [image](#input\_image) | Image to be used by the app | `string` | `"FIXME"` | no |
+| <a name="input_image"></a> [image](#input\_image) | Image to be used by the app | `string` | `""` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | Labels metadata | `map(string)` | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | Tsuru app name | `string` | n/a | yes |
 | <a name="input_plan"></a> [plan](#input\_plan) | Tsuru app plan (see: tsuru plan list) | `string` | `"c0.1m0.1"` | no |
 | <a name="input_platform"></a> [platform](#input\_platform) | Tsuru app platform | `string` | n/a | yes |
 | <a name="input_pool"></a> [pool](#input\_pool) | Tsuru pool (see: tsuru pool list) | `string` | n/a | yes |
 | <a name="input_private_environment_variables"></a> [private\_environment\_variables](#input\_private\_environment\_variables) | Sensitive app ENV variables | `map(string)` | n/a | yes |
-| <a name="input_processes"></a> [processes](#input\_processes) | Tsuru process configuration, required fields: name, autoscale\_target\_cpu, autoscale\_min\_units, autoscale\_max\_units, optional fields: custom\_plan, annotations, labels | <pre>list(<br/>    object({<br/>      name                 = string<br/>      custom_plan          = optional(string, null)<br/>      autoscale_target_cpu = number<br/>      autoscale_min_units  = number<br/>      autoscale_max_units  = number<br/>      annotations          = optional(map(string), {})<br/>      labels               = optional(map(string), {})<br/>    })<br/>  )</pre> | n/a | yes |
+| <a name="input_processes"></a> [processes](#input\_processes) | Tsuru process configuration, required fields: name, autoscale\_target\_cpu, autoscale\_min\_units, autoscale\_max\_units, optional fields: custom\_plan, annotations, labels, scale\_down, schedule, prometheus | <pre>list(<br/>    object({<br/>      name                 = string<br/>      custom_plan          = optional(string, null)<br/>      autoscale_target_cpu = number<br/>      autoscale_min_units  = number<br/>      autoscale_max_units  = number<br/>      annotations          = optional(map(string), {})<br/>      labels               = optional(map(string), {})<br/>      scale_down = optional(object({<br/>        percentage           = optional(number, null)<br/>        stabilization_window = optional(number, null)<br/>        units                = optional(number, null)<br/>      }), null)<br/>      schedule = optional(list(object({<br/>        min_replicas = number<br/>        start        = string<br/>        end          = string<br/>        timezone     = optional(string, "UTC")<br/>      })), [])<br/>      prometheus = optional(list(object({<br/>        name           = string<br/>        query          = string<br/>        threshold      = number<br/>        custom_address = optional(string, null)<br/>      })), [])<br/>    })<br/>  )</pre> | n/a | yes |
 | <a name="input_restart_on_update"></a> [restart\_on\_update](#input\_restart\_on\_update) | Whether to restart the app when its configuration or processes are updated | `bool` | `true` | no |
 | <a name="input_routers"></a> [routers](#input\_routers) | Tsuru app routers (see: tsuru router list) | `set(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tsuru tags | `set(string)` | n/a | yes |
