@@ -127,7 +127,6 @@ Feel free to reach out to the maintainers for questions, suggestions, or if you'
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_acl"></a> [acl](#requirement\_acl) | ~> 0.2.0 |
 | <a name="requirement_tsuru"></a> [tsuru](#requirement\_tsuru) | ~> 2.17.1 |
 
 ## Providers
