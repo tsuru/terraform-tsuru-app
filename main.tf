@@ -1,3 +1,17 @@
+locals {
+  processes_by_name = { for p in var.processes : p.name => p }
+
+  autoscale_processes = {
+    for name, inst in local.processes_by_name : name => inst
+    if inst.autoscale_min_units != null && inst.autoscale_max_units != null && inst.autoscale_target_cpu != null
+  }
+
+  manual_unit_processes = {
+    for name, inst in local.processes_by_name : name => inst
+    if !(inst.autoscale_target_cpu != null || inst.autoscale_min_units != null || inst.autoscale_max_units != null)
+  }
+}
+
 resource "tsuru_app" "app" {
   name              = var.name
   plan              = var.plan
@@ -47,7 +61,7 @@ resource "tsuru_app_cname" "app_cname" {
 }
 
 resource "tsuru_app_autoscale" "app_scale" {
-  for_each    = { for inst in var.processes : inst.name => inst }
+  for_each    = local.autoscale_processes
   app         = tsuru_app.app.name
   process     = each.key
   min_units   = each.value.autoscale_min_units
@@ -87,6 +101,15 @@ resource "tsuru_app_autoscale" "app_scale" {
   }
 }
 
+resource "tsuru_app_unit" "app_unit" {
+  for_each = {
+    for u in var.app_units : u.process => u
+    if contains(keys(local.manual_unit_processes), u.process)
+  }
+  app         = tsuru_app.app.name
+  process     = each.key
+  units_count = each.value.units_count
+}
 
 resource "tsuru_app_router" "app_router" {
   for_each = var.routers

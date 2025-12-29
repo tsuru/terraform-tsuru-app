@@ -31,14 +31,14 @@ variable "deploy" {
 }
 
 variable "processes" {
-  description = "Tsuru process configuration, required fields: name, autoscale_target_cpu, autoscale_min_units, autoscale_max_units, optional fields: custom_plan, annotations, labels, scale_down, schedule, prometheus"
+  description = "Tsuru process configuration. Fields: name (required). Autoscale is optional: to enable it, set autoscale_target_cpu/autoscale_min_units/autoscale_max_units. Optional fields: custom_plan, annotations, labels, scale_down, schedule, prometheus"
   type = list(
     object({
       name                 = string
       custom_plan          = optional(string, null)
-      autoscale_target_cpu = number
-      autoscale_min_units  = number
-      autoscale_max_units  = number
+      autoscale_target_cpu = optional(number, null)
+      autoscale_min_units  = optional(number, null)
+      autoscale_max_units  = optional(number, null)
       annotations          = optional(map(string), {})
       labels               = optional(map(string), {})
       scale_down = optional(object({
@@ -60,6 +60,17 @@ variable "processes" {
       })), [])
     })
   )
+}
+
+variable "app_units" {
+  description = "Configures fixed units (tsuru_app_unit) per process. Can only be used when the process does not have autoscale configured (autoscale_* not set)."
+  type = list(
+    object({
+      process     = string
+      units_count = number
+    })
+  )
+  default = []
 }
 
 variable "plan" {
