@@ -75,6 +75,14 @@ module "my_app" {
 }
 ```
 
+## Examples
+
+Check the [`examples/`](examples/) directory for complete usage examples:
+
+- **[simple](examples/simple/)** - Basic usage showing both autoscale and fixed units configuration
+
+Each example includes a detailed README with instructions and important notes about deployment requirements.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
@@ -143,6 +151,7 @@ No modules.
 | [tsuru_app_env.app_env](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_env) | resource |
 | [tsuru_app_grant.team](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_grant) | resource |
 | [tsuru_app_router.app_router](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_router) | resource |
+| [tsuru_app_unit.app_unit](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/app_unit) | resource |
 | [tsuru_certificate_issuer.cert](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/certificate_issuer) | resource |
 | [tsuru_service_instance_bind.app_bind](https://registry.terraform.io/providers/tsuru/tsuru/latest/docs/resources/service_instance_bind) | resource |
 
@@ -151,6 +160,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_annotations"></a> [annotations](#input\_annotations) | Annotations metadata | `map(string)` | `{}` | no |
+| <a name="input_app_units"></a> [app\_units](#input\_app\_units) | Configures fixed units (tsuru\_app\_unit) per process. Can only be used when the process does not have autoscale configured (autoscale\_* not set). | <pre>list(<br/>    object({<br/>      process     = string<br/>      units_count = number<br/>    })<br/>  )</pre> | `[]` | no |
 | <a name="input_binds"></a> [binds](#input\_binds) | App binds | <pre>list(<br/>    object({<br/>      service_name     = string<br/>      service_instance = string<br/>    })<br/>  )</pre> | `[]` | no |
 | <a name="input_cnames"></a> [cnames](#input\_cnames) | CNAMEs for the application. If issuer is provided, a certificate will be created | <pre>list(<br/>    object({<br/>      hostname = string<br/>      issuer   = optional(string, null)<br/>    })<br/>  )</pre> | `[]` | no |
 | <a name="input_custom_cpu_burst"></a> [custom\_cpu\_burst](#input\_custom\_cpu\_burst) | CPU burst factory override | `number` | `null` | no |
@@ -165,7 +175,7 @@ No modules.
 | <a name="input_platform"></a> [platform](#input\_platform) | Tsuru app platform | `string` | n/a | yes |
 | <a name="input_pool"></a> [pool](#input\_pool) | Tsuru pool (see: tsuru pool list) | `string` | n/a | yes |
 | <a name="input_private_environment_variables"></a> [private\_environment\_variables](#input\_private\_environment\_variables) | Sensitive app ENV variables | `map(string)` | n/a | yes |
-| <a name="input_processes"></a> [processes](#input\_processes) | Tsuru process configuration, required fields: name, autoscale\_target\_cpu, autoscale\_min\_units, autoscale\_max\_units, optional fields: custom\_plan, annotations, labels, scale\_down, schedule, prometheus | <pre>list(<br/>    object({<br/>      name                 = string<br/>      custom_plan          = optional(string, null)<br/>      autoscale_target_cpu = number<br/>      autoscale_min_units  = number<br/>      autoscale_max_units  = number<br/>      annotations          = optional(map(string), {})<br/>      labels               = optional(map(string), {})<br/>      scale_down = optional(object({<br/>        percentage           = optional(number, null)<br/>        stabilization_window = optional(number, null)<br/>        units                = optional(number, null)<br/>      }), null)<br/>      schedule = optional(list(object({<br/>        min_replicas = number<br/>        start        = string<br/>        end          = string<br/>        timezone     = optional(string, "UTC")<br/>      })), [])<br/>      prometheus = optional(list(object({<br/>        name           = string<br/>        query          = string<br/>        threshold      = number<br/>        custom_address = optional(string, null)<br/>      })), [])<br/>    })<br/>  )</pre> | n/a | yes |
+| <a name="input_processes"></a> [processes](#input\_processes) | Tsuru process configuration. Fields: name (required). Autoscale is optional: to enable it, set autoscale\_target\_cpu/autoscale\_min\_units/autoscale\_max\_units. Optional fields: custom\_plan, annotations, labels, scale\_down, schedule, prometheus | <pre>list(<br/>    object({<br/>      name                 = string<br/>      custom_plan          = optional(string, null)<br/>      autoscale_target_cpu = optional(number, null)<br/>      autoscale_min_units  = optional(number, null)<br/>      autoscale_max_units  = optional(number, null)<br/>      annotations          = optional(map(string), {})<br/>      labels               = optional(map(string), {})<br/>      scale_down = optional(object({<br/>        percentage           = optional(number, null)<br/>        stabilization_window = optional(number, null)<br/>        units                = optional(number, null)<br/>      }), null)<br/>      schedule = optional(list(object({<br/>        min_replicas = number<br/>        start        = string<br/>        end          = string<br/>        timezone     = optional(string, "UTC")<br/>      })), [])<br/>      prometheus = optional(list(object({<br/>        name           = string<br/>        query          = string<br/>        threshold      = number<br/>        custom_address = optional(string, null)<br/>      })), [])<br/>    })<br/>  )</pre> | n/a | yes |
 | <a name="input_restart_on_update"></a> [restart\_on\_update](#input\_restart\_on\_update) | Whether to restart the app when its configuration or processes are updated | `bool` | `true` | no |
 | <a name="input_routers"></a> [routers](#input\_routers) | Tsuru app routers (see: tsuru router list) | `set(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tsuru tags | `set(string)` | n/a | yes |
