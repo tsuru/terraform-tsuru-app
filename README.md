@@ -116,7 +116,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 This module is maintained by:
 
+- **[@elojas2](https://github.com/elojas2)** - Eloyse Fernanda
 - **[@fbtravi](https://github.com/fbtravi)** - Felipe Travi
+- **[@wpjunior](https://github.com/wpjunior)** - Wilson Júnior
 
 Feel free to reach out to the maintainers for questions, suggestions, or if you're interested in becoming a maintainer yourself.
 
