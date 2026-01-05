@@ -22,12 +22,12 @@ This module addresses several key challenges in Tsuru application management:
 
 ```hcl
 module "my_app" {
-  source = "github.com/your-org/terraform-tsuru-app"
+  source = "github.com/tsuru/terraform-tsuru-app"
 
   name        = "my-application"
   description = "My awesome application"
   platform    = "python"
-  plan        = "c0.5m1.0"
+  plan        = "c0.5m1"
   pool        = "production"
   team_owner  = "my-team"
   tags        = ["api", "production"]
@@ -35,7 +35,7 @@ module "my_app" {
   processes = [
     {
       name                 = "web"
-      custom_plan          = "c2.0m4.0"
+      custom_plan          = "c2m4"
       autoscale_target_cpu = 75
       autoscale_min_units  = 3
       autoscale_max_units  = 20
