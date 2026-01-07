@@ -56,6 +56,11 @@ module "my_app" {
     APP_ENV   = "production"
   }
 
+  private_environment_variables = {
+    API_KEY          = "your-api-key-here"
+    SECRET_TOKEN     = "your-secret-token"
+  }
+
   # CNAMEs with optional SSL certificates
   cnames = [
     {
@@ -83,34 +88,12 @@ Check the [`examples/`](examples/) directory for complete usage examples:
 
 Each example includes a detailed README with instructions and important notes about deployment requirements.
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Development
-
-### Prerequisites
+## Prerequisites
 
 - [Terraform](https://www.terraform.io/downloads.html) >= 1.0
-- [terraform-docs](https://terraform-docs.io/) (for documentation generation)
 
-### Makefile Commands
-
-```bash
-make help         # Show available commands
-make fmt          # Format Terraform files
-make docs         # Generate documentation
-```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Contributing
+For more details on how to contribute please see the [contributing](CONTRIBUTING.md) guideline.
 
 ## Maintainers
 
@@ -118,6 +101,7 @@ This module is maintained by:
 
 - **[@elojas2](https://github.com/elojas2)** - Eloyse Fernanda
 - **[@fbtravi](https://github.com/fbtravi)** - Felipe Travi
+- **[@iriscafe](https://github.com/iriscafe)** - Iris Café
 - **[@wpjunior](https://github.com/wpjunior)** - Wilson Júnior
 
 Feel free to reach out to the maintainers for questions, suggestions, or if you're interested in becoming a maintainer yourself.
@@ -168,14 +152,14 @@ No modules.
 | <a name="input_default_router"></a> [default\_router](#input\_default\_router) | Tsuru app default router (see: tsuru router list) | `string` | `"none"` | no |
 | <a name="input_deploy"></a> [deploy](#input\_deploy) | Deploy the app after creation | `bool` | `false` | no |
 | <a name="input_description"></a> [description](#input\_description) | Tsuru app description | `string` | n/a | yes |
-| <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | non-sensitive app ENV variables | `map(string)` | n/a | yes |
+| <a name="input_environment_variables"></a> [environment\_variables](#input\_environment\_variables) | non-sensitive app ENV variables | `map(string)` | `{}` | no |
 | <a name="input_image"></a> [image](#input\_image) | Image to be used by the app | `string` | `""` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | Labels metadata | `map(string)` | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | Tsuru app name | `string` | n/a | yes |
 | <a name="input_plan"></a> [plan](#input\_plan) | Tsuru app plan (see: tsuru plan list) | `string` | `"c0.1m0.1"` | no |
 | <a name="input_platform"></a> [platform](#input\_platform) | Tsuru app platform | `string` | n/a | yes |
 | <a name="input_pool"></a> [pool](#input\_pool) | Tsuru pool (see: tsuru pool list) | `string` | n/a | yes |
-| <a name="input_private_environment_variables"></a> [private\_environment\_variables](#input\_private\_environment\_variables) | Sensitive app ENV variables | `map(string)` | n/a | yes |
+| <a name="input_private_environment_variables"></a> [private\_environment\_variables](#input\_private\_environment\_variables) | Sensitive app ENV variables | `map(string)` | `{}` | no |
 | <a name="input_processes"></a> [processes](#input\_processes) | Tsuru process configuration. Fields: name (required). Autoscale is optional: to enable it, set autoscale\_target\_cpu/autoscale\_min\_units/autoscale\_max\_units. Optional fields: custom\_plan, annotations, labels, scale\_down, schedule, prometheus | <pre>list(<br/>    object({<br/>      name                 = string<br/>      custom_plan          = optional(string, null)<br/>      autoscale_target_cpu = optional(number, null)<br/>      autoscale_min_units  = optional(number, null)<br/>      autoscale_max_units  = optional(number, null)<br/>      annotations          = optional(map(string), {})<br/>      labels               = optional(map(string), {})<br/>      scale_down = optional(object({<br/>        percentage           = optional(number, null)<br/>        stabilization_window = optional(number, null)<br/>        units                = optional(number, null)<br/>      }), null)<br/>      schedule = optional(list(object({<br/>        min_replicas = number<br/>        start        = string<br/>        end          = string<br/>        timezone     = optional(string, "UTC")<br/>      })), [])<br/>      prometheus = optional(list(object({<br/>        name           = string<br/>        query          = string<br/>        threshold      = number<br/>        custom_address = optional(string, null)<br/>      })), [])<br/>    })<br/>  )</pre> | n/a | yes |
 | <a name="input_restart_on_update"></a> [restart\_on\_update](#input\_restart\_on\_update) | Whether to restart the app when its configuration or processes are updated | `bool` | `true` | no |
 | <a name="input_routers"></a> [routers](#input\_routers) | Tsuru app routers (see: tsuru router list) | `set(string)` | `[]` | no |

@@ -36,15 +36,6 @@ module "my_app" {
     }
   ]
 
-  environment_variables = {
-    LOG_LEVEL = "info"
-    APP_ENV   = "production"
-  }
-
-  private_environment_variables = {
-    API_KEY = "secret-key"
-  }
-
   cnames = [
     {
       hostname = "myapp.example.com"
