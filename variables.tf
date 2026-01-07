@@ -114,12 +114,14 @@ variable "restart_on_update" {
 variable "environment_variables" {
   description = "non-sensitive app ENV variables"
   type        = map(string)
+  default     = {}
 }
 
 variable "private_environment_variables" {
   description = "Sensitive app ENV variables"
   type        = map(string)
   sensitive   = true
+  default     = {}
 }
 
 variable "binds" {
