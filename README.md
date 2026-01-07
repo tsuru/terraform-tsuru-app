@@ -88,34 +88,12 @@ Check the [`examples/`](examples/) directory for complete usage examples:
 
 Each example includes a detailed README with instructions and important notes about deployment requirements.
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Development
-
-### Prerequisites
+## Prerequisites
 
 - [Terraform](https://www.terraform.io/downloads.html) >= 1.0
-- [terraform-docs](https://terraform-docs.io/) (for documentation generation)
 
-### Makefile Commands
-
-```bash
-make help         # Show available commands
-make fmt          # Format Terraform files
-make docs         # Generate documentation
-```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Contributing
+For more details on how to contribute please see the [contributing](CONTRIBUTING.md) guideline.
 
 ## Maintainers
 
