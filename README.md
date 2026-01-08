@@ -90,7 +90,7 @@ Each example includes a detailed README with instructions and important notes ab
 
 ## Prerequisites
 
-- [Terraform](https://www.terraform.io/downloads.html) >= 1.0
+- [Terraform](https://www.terraform.io/downloads.html) >= 1.8
 
 ## Contributing
 For more details on how to contribute please see the [contributing](CONTRIBUTING.md) guideline.
@@ -113,6 +113,7 @@ Feel free to reach out to the maintainers for questions, suggestions, or if you'
 
 | Name | Version |
 |------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8 |
 | <a name="requirement_tsuru"></a> [tsuru](#requirement\_tsuru) | ~> 2.17.1 |
 
 ## Providers
