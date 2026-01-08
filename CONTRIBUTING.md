@@ -39,7 +39,7 @@ Contributions are very welcome! There are several ways to contribute:
 
 ### Prerequisites
 
-- [Terraform](https://www.terraform.io/downloads.html) >= 1.0
+- [Terraform](https://www.terraform.io/downloads.html) >= 1.8
 - [terraform-docs](https://terraform-docs.io/) (for documentation generation)
 
 ### Makefile Commands

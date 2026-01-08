@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 
 terraform {
+  required_version = ">= 1.8"
   required_providers {
     tsuru = {
       source  = "tsuru/tsuru"
